@@ -108,14 +108,6 @@ export default function Home() {
     }
   }, [outputLanguage]);
 
-  useEffect(() => {
-    const apiKey = localStorage.getItem('apiKey');
-
-    if (apiKey) {
-      setApiKey(apiKey);
-    }
-  }, []);
-
   return (
     <>
       <Head>
