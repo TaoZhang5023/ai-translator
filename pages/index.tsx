@@ -12,12 +12,12 @@ export default function Home() {
   const [outputLanguage, setOutputLanguage] = useState<string>('Python');
   const [inputCode, setInputCode] = useState<string>('');
   const [outputCode, setOutputCode] = useState<string>('');
-  const [model, setModel] = useState<OpenAIModel>('gpt-3.5-turbo');
+  const [model, setModel] = useState<OpenAIModel>('gpt-4');
   const [loading, setLoading] = useState<boolean>(false);
   const [hasTranslated, setHasTranslated] = useState<boolean>(false);
 
   const handleTranslate = async () => {
-    const maxCodeLength = model === 'gpt-3.5-turbo' ? 6000 : 12000;
+    const maxCodeLength = 12000;
 
     if (inputLanguage === outputLanguage) {
       alert('Please select different languages.');
@@ -122,7 +122,6 @@ export default function Home() {
         </div>
 
         <div className="mt-2 flex items-center space-x-2">
-          <ModelSelect model={model} onChange={(value) => setModel(value)} />
 
           <button
             className="w-[140px] cursor-pointer rounded-md bg-violet-500 px-4 py-2 font-bold hover:bg-violet-600 active:bg-violet-700"
