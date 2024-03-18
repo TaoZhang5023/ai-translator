@@ -19,7 +19,7 @@ export default function Home() {
   const handleTranslate = async () => {
     const maxCodeLength = model === 'gpt-3.5-turbo' ? 6000 : 12000;
 
-    const apiKey = "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";
+    const apiKey = "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";
     if (inputLanguage === outputLanguage) {
       alert('Please select different languages.');
       return;
