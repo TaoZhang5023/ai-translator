@@ -19,7 +19,6 @@ export default function Home() {
   const handleTranslate = async () => {
     const maxCodeLength = model === 'gpt-3.5-turbo' ? 6000 : 12000;
 
-    const apiKey = process.env.GPT_KEY;
     if (inputLanguage === outputLanguage) {
       alert('Please select different languages.');
       return;
@@ -41,7 +40,7 @@ export default function Home() {
     setOutputCode('');
 
     const controller = new AbortController();
-
+    const apiKey = process.env.GPT_KEY || 'your_default_api_key';
     const body: TranslateBody = {
       inputLanguage,
       outputLanguage,
