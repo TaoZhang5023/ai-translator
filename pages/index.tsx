@@ -40,13 +40,11 @@ export default function Home() {
     setOutputCode('');
 
     const controller = new AbortController();
-    const apiKey = process.env.GPT_KEY || 'your_default_api_key';
     const body: TranslateBody = {
       inputLanguage,
       outputLanguage,
       inputCode,
       model,
-      apiKey,
     };
 
     const response = await fetch('/api/translate', {
