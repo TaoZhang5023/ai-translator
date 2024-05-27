@@ -1,9 +1,9 @@
 import { APIKeyInput } from '@/components/APIKeyInput';
 import { CodeBlock } from '@/components/CodeBlock';
 import { LanguageSelect } from '@/components/LanguageSelect';
-import { ModelSelect } from '@/components/ModelSelect';
+import { ToneSelect } from '@/components/ModelSelect';
 import { TextBlock } from '@/components/TextBlock';
-import { OpenAIModel, TranslateBody } from '@/types/types';
+import { Tone, TranslateBody } from '@/types/types';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +12,7 @@ export default function Home() {
   const [outputLanguage, setOutputLanguage] = useState<string>('Python');
   const [inputCode, setInputCode] = useState<string>('');
   const [outputCode, setOutputCode] = useState<string>('');
-  const [model, setModel] = useState<OpenAIModel>('gpt-4');
+  const [tone, setTone] = useState<Tone>(Tone.Professional);
   const [loading, setLoading] = useState<boolean>(false);
   const [hasTranslated, setHasTranslated] = useState<boolean>(false);
 
@@ -44,7 +44,7 @@ export default function Home() {
       inputLanguage,
       outputLanguage,
       inputCode,
-      model,
+      tone,
     };
 
     const response = await fetch('/api/translate', {
@@ -122,7 +122,7 @@ export default function Home() {
         </div>
 
         <div className="mt-2 flex items-center space-x-2">
-
+          <ToneSelect tone={tone} onChange={(value) => setTone(value)} />
           <button
             className="w-[140px] cursor-pointer rounded-md bg-violet-500 px-4 py-2 font-bold hover:bg-violet-600 active:bg-violet-700"
             onClick={() => handleTranslate()}

@@ -1,10 +1,15 @@
-export type OpenAIModel = 'gpt-3.5-turbo' | 'gpt-4';
+export enum Tone {
+  Professional = 'professional',
+  Casual = 'casual',
+  Academic = 'academic',
+  Formal = 'formal'
+}
 
 export interface TranslateBody {
   inputLanguage: string;
   outputLanguage: string;
   inputCode: string;
-  model: OpenAIModel;
+  tone: Tone;
 }
 
 export interface TranslateResponse {

@@ -9,11 +9,14 @@ const createPrompt = (
   inputLanguage: string,
   outputLanguage: string,
   inputCode: string,
+  tone: string
 ) => {
   return endent`
-  You are an university student. rewrite the following paragraph in a professional way.
+  Rewrite the following paragraph in a ${tone} tone:
 
-  ${inputCode}
+  Original: ${inputCode}
+
+  Desired Tone: ${tone}
   `;
 };
 
@@ -21,10 +24,10 @@ export const OpenAIStream = async (
   inputLanguage: string,
   outputLanguage: string,
   inputCode: string,
-  model: string,
+  tone: string,
   key: string,
 ) => {
-  const prompt = createPrompt(inputLanguage, outputLanguage, inputCode);
+  const prompt = createPrompt(inputLanguage, outputLanguage, inputCode, tone);
 
   const system = { role: 'system', content: prompt };
 
@@ -35,7 +38,7 @@ export const OpenAIStream = async (
     },
     method: 'POST',
     body: JSON.stringify({
-      model,
+      model: 'gpt-4',
       messages: [system],
       temperature: 0,
       stream: true,
