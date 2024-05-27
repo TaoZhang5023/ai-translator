@@ -7,14 +7,14 @@ export const config = {
 
 const handler = async (req: Request): Promise<Response> => {
   try {
-    const { inputLanguage, outputLanguage, inputCode, model } =
+    const { inputLanguage, outputLanguage, inputCode, tone } =
       (await req.json()) as TranslateBody;
     const apiKey = process.env.GPT_KEY || 'your_default_api_key';
     const stream = await OpenAIStream(
       inputLanguage,
       outputLanguage,
       inputCode,
-      model,
+      tone,
       apiKey,
     );
 
